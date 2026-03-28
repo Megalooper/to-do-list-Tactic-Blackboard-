@@ -47,7 +47,7 @@ app.get('/dashboard', requiereAuth, (req, res) => {
 });
 
 app.get('/', requiereAuth, (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
 // --- 6. Arranque ---
