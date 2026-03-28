@@ -1,0 +1,221 @@
+/* --- TEMA: VINTAGE_BOARD --- */
+:root {
+    --paper-yellow: #fff9c4;
+    --wood-brown: #5d4037;
+    --pin-red: #d32f2f;
+}
+
+/* --- TEMA: VINTAGE_BOARD (MEJORADO) --- */
+body[data-theme="retro"] {
+    background-color: #5d4037 !important;
+    /* Textura de vetas de madera */
+    background-image: 
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0,0,0,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, #4e342e 0%, #5d4037 50%, #4e342e 100%) !important;
+    background-size: 20px 20px, 100% 100%, 300px 100% !important;
+}
+
+/* Ocultar el canvas de Matrix en este tema para que no distraiga */
+body[data-theme="retro"] #matrix-canvas {
+    display: none !important;
+}
+
+/* El Nodo como Nota de Papel */
+[data-theme="retro"] .node-task {
+    background: var(--paper-yellow) !important;
+    color: #333 !important;
+    border: none !important;
+    clip-path: none !important;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.4) !important;
+    transform-origin: top center;
+    animation: pendulum 3s ease-in-out infinite alternate; /* Animación de colgado */
+    padding-top: 30px;
+}
+
+/* La "Tachuela" o Pin */
+[data-theme="retro"] .node-task::before {
+    content: "";
+    position: absolute;
+    top: 5px; left: 50%;
+    width: 15px; height: 15px;
+    background: var(--pin-red);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+@keyframes pendulum {
+    from { transform: rotate(-3deg); }
+    to { transform: rotate(3deg); }
+}
+
+/* --- TEMA: VINTAGE_BOARD (TRANSFORMACIÓN TOTAL) --- */
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+[data-theme="retro"] {
+    --font-mono: 'Special+Elite', cursive !important;
+}
+
+/* Sidebar como Hoja de Papel */
+body[data-theme="retro"] .sidebar-terminal {
+    background: #f5f5f5 !important;
+    border-right: 5px solid #dcdcdc;
+    color: #333 !important;
+    box-shadow: 10px 0 20px rgba(0,0,0,0.2);
+}
+
+body[data-theme="retro"] .sidebar-terminal h2 {
+    color: #d32f2f;
+    border-bottom: 2px solid #333;
+}
+
+/* Interior de la Nota (Estilo Máquina de Escribir) */
+[data-theme="retro"] .node-task {
+    font-family: 'Special Elite', cursive;
+    text-align: left;
+}
+
+/* Checkbox estilo "X" manual */
+[data-theme="retro"] input[type="checkbox"] {
+    appearance: none;
+    width: 18px; height: 18px;
+    border: 1px solid #333;
+    position: relative;
+    cursor: pointer;
+}
+
+[data-theme="retro"] input[type="checkbox"]:checked::before {
+    content: "X";
+    position: absolute;
+    top: -5px; left: 2px;
+    color: #d32f2f;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+[data-theme="retro"] .status-standby { color: #777 !important; border: 1px dashed #777; }
+[data-theme="retro"] .status-progress { background: #f44336 !important; color: white !important; }
+/* --- TEMA: CYBER_PUNK (INTERFAZ DE ALTA TENSIÓN) --- */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+[data-theme="neon"] {
+    --font-mono: 'VT323', monospace !important;
+}
+
+/* Sidebar Estilo Terminal de Seguridad */
+body[data-theme="neon"] .sidebar-terminal {
+    background: #000 !important;
+    border-right: 3px solid #39ff14;
+    box-shadow: 5px 0 20px rgba(57, 255, 20, 0.2);
+}
+
+body[data-theme="neon"] .sidebar-terminal h2 {
+    color: #39ff14;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px #39ff14;
+}
+
+/* El Nodo con Efecto de Falla (Glitch) */
+[data-theme="neon"] .node-task {
+    background: #000 !important;
+    color: #39ff14 !important;
+    border: 2px solid #39ff14 !important;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4) !important;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+}
+
+/* Checkbox estilo Interruptor de Energía */
+[data-theme="neon"] input[type="checkbox"] {
+    appearance: none;
+    width: 20px; height: 20px;
+    border: 2px solid #39ff14;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+[data-theme="neon"] input[type="checkbox"]:checked {
+    background: #39ff14;
+    box-shadow: 0 0 15px #39ff14;
+}
+
+[data-theme="neon"] input[type="checkbox"]:checked::after {
+    content: "✔";
+    position: absolute;
+    top: -5px; left: 2px;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Botones con parpadeo Neon */
+[data-theme="neon"] .btn-node {
+    background: transparent !important;
+    color: #39ff14 !important;
+    border: 2px solid #39ff14 !important;
+    text-shadow: 0 0 5px #39ff14;
+}
+
+[data-theme="neon"] .btn-node:hover {
+    background: #39ff14 !important;
+    color: #000 !important;
+}
+
+[data-theme="retro"] .sidebar-terminal h2 { font-size: 0; }
+[data-theme="retro"] .sidebar-terminal h2::before { 
+    content: "ARCHIVO_DE_CASOS"; 
+    font-size: 1.6rem; 
+}
+[data-theme="retro"] .sidebar-trigger { font-size: 0; }
+[data-theme="retro"] .sidebar-trigger::before { 
+    content: "ABRIR_EXPEDIENTE"; 
+    font-size: 0.9rem; 
+}
+[data-theme="retro"] label[for="taskInput"] { font-size: 0; }
+[data-theme="retro"] label[for="taskInput"]::before { content: "ASUNTO DEL CASO:"; font-size: 0.8rem; }
+
+/* --- TEMA: VINTAGE_BOARD (REGISTRO OFICIAL) --- */
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+[data-theme="retro"] {
+    --paper: #fff9c4;
+    --wood: #5d4037;
+}
+
+/* Mensajería Retro */
+body[data-theme="retro"] #mainTitle,
+body[data-theme="retro"] #loginTitle,
+body[data-theme="retro"] #regTitle { font-size: 0; }
+
+body[data-theme="retro"] #mainTitle::before { content: "ARCHIVO_DE_CASOS"; font-size: 1.6rem; color: #d32f2f; }
+body[data-theme="retro"] #loginTitle::before { content: "REGISTRO_DE_PERSONAL"; font-size: 1.6rem; color: #d32f2f; }
+body[data-theme="retro"] #regTitle::before { content: "FICHA_DE_NUEVO_AGENTE"; font-size: 1.6rem; color: #d32f2f; }
+
+/* El Nodo de Papel */
+[data-theme="retro"] .node-task {
+    background: var(--paper) !important;
+    color: #333 !important;
+    font-family: 'Special Elite', cursive;
+    border: none !important;
+    clip-path: none !important;
+    animation: pendulum 3s ease-in-out infinite alternate; /* Balanceo suave */
+}
+
+/* --- ANIMACIÓN DE TRANSICIÓN: PAPER_DROP (CORREGIDO) --- */
+body[data-theme="retro"] .auth-switching {
+    animation: paper-drop 0.8s ease-in forwards !important;
+    transform-origin: top center; /* Para que la hoja caiga de arriba */
+}
+
+@keyframes paper-drop {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    30% { transform: translateY(10px) rotate(2deg); opacity: 1; } /* Se suelta */
+    49% { transform: translateY(400px) rotate(15deg); opacity: 0.1; } /* Cae al "suelo" */
+    50% { transform: translateY(-300px); opacity: 0; } /* Reaparece arriba */
+    70% { transform: translateY(-20px) rotate(-2deg); opacity: 0.8; } /* Baja rebotando */
+    100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+}

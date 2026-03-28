@@ -1,0 +1,24 @@
+:root {
+    --accent: #6366f1; /* Azul Indigo */
+}
+
+body { 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+    height: 100vh; display: flex; align-items: center; justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container { 
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px); 
+    border-radius: 20px; padding: 30px; width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+header h1 { color: white; text-align: center; }
+.input-section { display: flex; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 5px; }
+input { border: none; background: none; color: white; padding: 10px; flex: 1; outline: none; }
+input::placeholder { color: rgba(255,255,255,0.7); }
+button { background: white; color: var(--accent); border-radius: 8px; border: none; padding: 10px; font-weight: bold; cursor: pointer; }
+.task-item { background: rgba(255,255,255,0.9); color: #333; border-radius: 12px; margin-top: 15px; padding: 15px; display: flex; justify-content: space-between; }

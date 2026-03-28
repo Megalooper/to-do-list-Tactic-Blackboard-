@@ -1,0 +1,105 @@
+/* --- TEMA: NEO_GLASS --- */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+.node-task {
+    background: var(--glass-bg) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--glass-border) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5) !important;
+    /* En el cristal quitamos el clip-path para un look más limpio */
+    clip-path: none !important; 
+}
+
+.node-title-mini { color: #ffffff !important; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+.status-progress { background: #60a5fa !important; box-shadow: 0 0 15px #60a5fa; }
+.status-standby { color: #60a5fa !important; }
+.btn-node { border-color: rgba(255,255,255,0.3) !important; color: #fff !important; }
+.btn-node.black { background: rgba(255,255,255,0.1) !important; }
+
+/* --- TEMA: NEO_GLASS (INTERFAZ LÍQUIDA) --- */
+body[data-theme="glass"] .sidebar-terminal {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Checkbox estilo Switch Neon */
+[data-theme="glass"] input[type="checkbox"] {
+    appearance: none;
+    width: 34px; height: 18px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    position: relative;
+    transition: 0.3s;
+}
+
+[data-theme="glass"] input[type="checkbox"]:checked {
+    background: #60a5fa;
+    box-shadow: 0 0 10px #60a5fa;
+}
+
+[data-theme="glass"] input[type="checkbox"]::after {
+    content: "";
+    position: absolute;
+    width: 14px; height: 14px;
+    background: white;
+    border-radius: 50%;
+    top: 2px; left: 2px;
+    transition: 0.3s;
+}
+
+[data-theme="glass"] input[type="checkbox"]:checked::after {
+    left: 18px;
+}
+[data-theme="glass"] .sidebar-terminal h2 { font-size: 0; }
+[data-theme="glass"] .sidebar-terminal h2::before { 
+    content: "CONSOLA_DE_COMANDO"; 
+    font-size: 1.5rem; 
+}
+[data-theme="glass"] .sidebar-trigger { font-size: 0; }
+[data-theme="glass"] .sidebar-trigger::before { 
+    content: "ACCESO_BIOMÉTRICO"; 
+    font-size: 0.9rem; 
+}
+
+/* --- TEMA: NEO_GLASS (INTERFAZ AEROESPACIAL) --- */
+[data-theme="glass"] {
+    --glass-blue: #60a5fa;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* Mensajería Glass */
+body[data-theme="glass"] #mainTitle,
+body[data-theme="glass"] #loginTitle,
+body[data-theme="glass"] #regTitle { font-size: 0; }
+
+body[data-theme="glass"] #mainTitle::before { content: "CONSOLA_DE_COMANDO"; font-size: 1.5rem; color: var(--glass-blue); }
+body[data-theme="glass"] #loginTitle::before { content: "AUTENTICACIÓN_BIOMÉTRICA"; font-size: 1.5rem; color: var(--glass-blue); }
+body[data-theme="glass"] #regTitle::before { content: "NUEVO_PERFIL_OPERADOR"; font-size: 1.5rem; color: var(--glass-blue); }
+
+/* El Nodo de Cristal */
+[data-theme="glass"] .node-task {
+    background: var(--glass-bg) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    clip-path: none !important;
+}
+
+/* --- ANIMACIÓN DE TRANSICIÓN: GLASS_MORPH (CORREGIDO) --- */
+body[data-theme="glass"] .auth-switching {
+    animation: glass-morph 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+}
+
+@keyframes glass-morph {
+    0% { backdrop-filter: blur(12px); transform: scale(1); opacity: 1; }
+    49% { backdrop-filter: blur(2px); transform: scale(0.9) rotate(2deg); opacity: 0.1; } /* Punto de cambio */
+    51% { backdrop-filter: blur(2px); transform: scale(1.1) rotate(-2deg); opacity: 0.1; }
+    100% { backdrop-filter: blur(12px); transform: scale(1) rotate(0); opacity: 1; }
+}

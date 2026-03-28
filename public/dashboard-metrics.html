@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Profesional | WHITEMASK</title>
+  <link rel="stylesheet" href="/themes/dashboard-metrics.css">
+  <link rel="stylesheet" href="/themes/web-clean.css">
+  <link rel="stylesheet" href="/themes/whitemask.css">
+  <link rel="stylesheet" href="/themes/neon.css">
+  <link rel="stylesheet" href="/themes/glass.css">
+  <link rel="stylesheet" href="/themes/retro.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/themes/theme-injector.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>Panel de Control</h2>
+    <button onclick="window.location.href='/index.html'">Ir a Pizarra</button>
+    <button onclick="window.location.href='/auth/logout'" style=" background:#d32f2f; color:#fff;">
+            Cerrar Sesión
+    </button>
+    <div id="calendarBox" class="calendar-box"></div>
+    <div id="alertas"></div>
+    <div style="margin: 18px 0;">
+      <label for="themeSelector" style="font-size:0.95rem; color:#00f2ff; font-weight:bold;">Tema visual:</label>
+      <select id="themeSelector" onchange="changeTheme(this.value)" style="width:100%;margin-top:6px;padding:7px 8px;font-family:'Fira Code',monospace;">
+        <option value="default">Whitemask</option>
+        <option value="neon">Neon</option>
+        <option value="glass">Glass</option>
+        <option value="retro">Retro</option>
+      </select>
+    </div>
+  </aside>
+  <main>
+    <header>
+      <h1>Dashboard de Métricas</h1>
+      <div class="stats">
+        <div>Total tareas: <span id="totalTareas">0</span></div>
+        <div>Empezadas: <span id="tareasCompletadas">0</span></div>
+        <div>Pendientes: <span id="tareasPendientes">0</span></div>
+        <div>Críticas: <span id="tareasCriticas">0</span></div>
+      </div>
+    </header>
+    <section class="charts">
+      <canvas id="chartTareas" height="180"></canvas>
+      <canvas id="chartEvolucion" height="180" style="display: block;"></canvas>
+    </section>
+    <section id="alertasCriticas">
+      <h2>Alertas Críticas</h2>
+      <ul id="listaAlertas"></ul>
+    </section>
+  </main>
+  <script src="/dashboard-metrics.js"></script>
+  <script>
+    // Selector de tema visual (opcional, puedes ponerlo en el sidebar si quieres)
+    function setTheme(theme) { changeTheme(theme); }
+  </script>
+</body>
+</html>

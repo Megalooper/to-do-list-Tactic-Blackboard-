@@ -1,0 +1,6 @@
+dashboard.html
+/dashboard-logic.js
+/dashboard-v4-logic.js
+/themes/dashboard.js
+/themes/dashboard.css
+(archivados para limpieza y control de versiones manual)

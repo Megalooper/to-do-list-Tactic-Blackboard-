@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHITEMASK | Pizarra Táctica</title>
+    <link rel="stylesheet" href="/themes/whitemask.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700;900&family=VT323&family=Special+Elite&display=swap" rel="stylesheet">
+</head>
+<body data-theme="default">
+    <canvas id="matrix-canvas"></canvas>
+
+    <nav class="sidebar-terminal">
+        <div class="sidebar-trigger">_TERMINAL_INPUT</div>
+        <div class="sidebar-content">
+            <h2 id="mainTitle">INJECT_DATA</h2>
+            
+            <div class="form-group">
+                <label id="labelOp">OPERACIÓN</label>
+                <input type="text" id="taskInput" placeholder="NOMBRE..." autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="deadlineInput">FECHA LÍMITE (opcional)</label>
+                <input type="date" id="deadlineInput" style="width:100%;background:#111;color:#fff;border:1px solid #333;padding:10px;margin-top:4px;">
+            </div>
+
+            <div class="form-group" id="iaSuggestBox" style="border-top: 1px dashed #444; padding-top: 15px;">
+            <label>ASISTENTE IA</label>
+            <div style="display:flex; gap:5px; align-items:center;">
+                <input type="text" id="iaMisionInput" placeholder="Describe la misión..." style="flex:1; background:#111; color:#fff; border:1px solid #333; padding:8px;">
+                <button id="iaSuggestBtn" class="btn-node" style="background:#00f2ff; color:#000;">IA</button>
+            </div>
+            <div id="iaSuggestResult" style="margin-top:10px; font-size:0.95rem;"></div>
+        </div>
+
+            <div class="form-group" style="border-top: 1px dashed #444; padding-top: 15px;">
+                <label id="labelFase">AÑADIR FASE INTERNA</label>
+                <div style="display: flex; gap: 5px;">
+                    <input type="text" id="subtaskInput" placeholder="Fase..." autocomplete="off">
+                    <button onclick="addInternalTask()" class="btn-plus">+</button>
+                </div>
+                <ul id="subtaskDisplay"></ul>
+            </div>
+
+            <button id="addBtn" class="btn-node">[ DESPLEGAR_NODO ]</button>
+
+            <div class="form-group" style="border-top: 1px dashed #444; padding-top: 15px;">
+                <label>PROTOCOLO_VISUAL</label>
+                <select id="themeSelector" onchange="changeTheme(this.value)">
+                    <option value="default">WHITEMASK_ORIGIN</option>
+                    <option value="glass">NEO_GLASS</option>
+                    <option value="neon">CYBER_PUNK</option>
+                    <option value="retro">VINTAGE_BOARD</option>
+                </select>
+            </div>
+        </div>
+            <div class="form-group" style="border-top: 1px dashed #444; padding-top: 15px;">
+        <div class="form-group" style="border-top: 1px dashed #444; padding-top: 15px;">
+    <label>VISTA_OPERATIVA</label>
+        <button onclick="window.location.href='/dashboard'" class="btn-node" style="background: #2196F3; color: white;">
+            [ IR_AL_DASHBOARD ]
+        </button>
+    </div>
+        <button onclick="window.location.href='/auth/logout'" class="btn-node" style="margin-top:20px; background:#d32f2f; color:#fff;">
+            [ DESCONECTAR_AGENTE ]
+        </button>
+    </div>
+    </nav>
+
+    <main class="mission-board" id="taskList"></main>
+
+    <script src="/themes/theme-injector.js"></script>
+    <script src="/themes/whitemask.js"></script>
+</body>
+</html>

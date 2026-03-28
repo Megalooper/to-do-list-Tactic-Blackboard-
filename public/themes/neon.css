@@ -1,0 +1,146 @@
+/* --- TEMA: CYBER_PUNK (SISTEMA HACKEADO) --- */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* 1. VARIABLES DE IDENTIDAD */
+[data-theme="neon"] {
+    --font-mono: 'VT323', monospace !important;
+    --neon-green: #39ff14;
+    --neon-glow: rgba(57, 255, 20, 0.4);
+}
+
+/* 2. SIDEBAR: TERMINAL DE ACCESO ROOT */
+body[data-theme="neon"] .sidebar-terminal {
+    background: #000 !important;
+    border-right: 3px solid var(--neon-green);
+    box-shadow: 5px 0 20px var(--neon-glow);
+}
+
+/* Cambio de Mensajería en el Sidebar */
+body[data-theme="neon"] .sidebar-terminal h2 {
+    font-size: 0; /* Ocultamos el original */
+}
+
+body[data-theme="neon"] .sidebar-terminal h2::before {
+    content: "ROOT_ACCESS_GRANTED";
+    font-size: 1.8rem;
+    color: var(--neon-green);
+    text-shadow: 0 0 10px var(--neon-green);
+    letter-spacing: 2px;
+}
+
+body[data-theme="neon"] .sidebar-trigger {
+    font-size: 0;
+}
+
+body[data-theme="neon"] .sidebar-trigger::before {
+    content: "BYPASS_FIREWALL";
+    font-size: 1rem;
+    color: #000;
+}
+
+/* 3. EL NODO: HARDWARE VIRTUAL */
+[data-theme="neon"] .node-task {
+    background: #000 !important;
+    color: var(--neon-green) !important;
+    border: 2px solid var(--neon-green) !important;
+    box-shadow: 0 0 15px var(--neon-glow) !important;
+    font-family: 'VT323', monospace;
+    font-size: 1.3rem;
+    /* Corte Geométrico Agresivo */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%) !important;
+}
+
+/* 4. INTERFAZ INTERNA (Checkboxes y Botones) */
+[data-theme="neon"] input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--neon-green);
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+[data-theme="neon"] input[type="checkbox"]:checked {
+    background: var(--neon-green);
+    box-shadow: 0 0 15px var(--neon-green);
+}
+
+[data-theme="neon"] input[type="checkbox"]:checked::after {
+    content: "✔";
+    position: absolute;
+    top: -5px;
+    left: 2px;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+[data-theme="neon"] .btn-node {
+    background: transparent !important;
+    color: var(--neon-green) !important;
+    border: 1px solid var(--neon-green) !important;
+    font-family: 'VT323', monospace;
+    text-shadow: 0 0 5px var(--neon-green);
+}
+
+[data-theme="neon"] .btn-node:hover {
+    background: var(--neon-green) !important;
+    color: #000 !important;
+}
+
+/* 5. MENSAJERÍA DE NODOS */
+[data-theme="neon"] .status-standby {
+    color: var(--neon-green) !important;
+    opacity: 0.6;
+    border: 1px dashed var(--neon-green);
+}
+
+[data-theme="neon"] .status-progress {
+    background: var(--neon-green) !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px var(--neon-green);
+}
+
+/* --- TEMA: CYBER_PUNK (SISTEMA HACKEADO) --- */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+[data-theme="neon"] {
+    --font-mono: 'VT323', monospace !important;
+    --neon-green: #39ff14;
+    --neon-glow: rgba(57, 255, 20, 0.4);
+}
+
+/* Sidebar y Login Adaptable */
+body[data-theme="neon"] .sidebar-terminal h2,
+body[data-theme="neon"] #loginTitle,
+body[data-theme="neon"] #regTitle { font-size: 0; }
+
+body[data-theme="neon"] #mainTitle::before { content: "ROOT_ACCESS_GRANTED"; font-size: 1.8rem; color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); }
+body[data-theme="neon"] #loginTitle::before { content: "ESTABLECIENDO_CONEXIÓN_SSH"; font-size: 1.8rem; color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); }
+body[data-theme="neon"] #regTitle::before { content: "CREANDO_NUEVO_PERFIL_AGENTE"; font-size: 1.8rem; color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); }
+
+/* El Nodo Táctico */
+[data-theme="neon"] .node-task {
+    background: #000 !important;
+    color: var(--neon-green) !important;
+    border: 2px solid var(--neon-green) !important;
+    box-shadow: 0 0 15px var(--neon-glow) !important;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%) !important;
+}
+
+/* --- ANIMACIÓN DE TRANSICIÓN: GLITCH_SWITCH (CORREGIDO) --- */
+body[data-theme="neon"] .auth-switching {
+    animation: glitch-switch 0.1s steps(1) forwards !important; /* Steps(1) para parpadeo duro */
+}
+
+@keyframes glitch-switch {
+    0% { transform: translate(0) skew(0deg); border-color: var(--neon-green); box-shadow: 0 0 15px var(--neon-glow); }
+    10% { transform: translate(-2px, 1px) skew(5deg); border-color: #ff00ff; box-shadow: 0 0 15px #ff00ff; } /* Púrpura */
+    30% { transform: translate(2px, -1px) skew(-5deg); border-color: #00ffff; box-shadow: 0 0 15px #00ffff; } /* Cian */
+    50% { opacity: 0; transform: translate(0) scale(0.9); } /* Punto de cambio de contenido */
+    51% { opacity: 1; transform: translate(0) scale(1.05); }
+    70% { transform: translate(-1px, 2px); border-color: #ff0000; box-shadow: 0 0 15px #ff0000; } /* Rojo */
+    90% { transform: translate(1px, -2px); border-color: var(--neon-green); box-shadow: 0 0 15px var(--neon-glow); }
+    100% { transform: translate(0) skew(0deg); opacity: 1; }
+}

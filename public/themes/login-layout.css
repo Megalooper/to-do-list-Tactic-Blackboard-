@@ -1,0 +1,76 @@
+/* --- LOGIN_LAYOUT: ESTRUCTURA PROFESIONAL CENTRADA --- */
+
+/* Contenedor principal que centra todo en la Optiplex 7050 */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 1000;
+}
+
+/* La Caja de Login (Soberbia y Centrada) */
+.login-box {
+    width: 380px; /* Tamaño fijo profesional */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    text-align: center;
+    position: relative;
+    /* La caja heredará el estilo del nodo táctico del tema activo */
+}
+
+/* Título Serio */
+.login-box h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Formulario Limpio */
+.login-box .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.login-box label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+    opacity: 0.8;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.05);
+    color: inherit;
+    font-family: inherit;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    font-weight: 700;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.toggle-link {
+    margin-top: 20px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    text-decoration: underline;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.toggle-link:hover { opacity: 1; color: var(--accent-red); }

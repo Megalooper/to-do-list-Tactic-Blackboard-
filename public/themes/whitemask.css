@@ -1,0 +1,237 @@
+/* --- 1. RESETEO Y VARIABLES --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg-black: #000000;
+    --ink-white: #ffffff;
+    --accent-red: #ff0000;
+    --accent-blue: #0000ff;
+    --font-mono: 'Fira Code', monospace;
+}
+
+html, body {
+    background-color: var(--bg-black) !important;
+    color: var(--ink-white);
+    font-family: var(--font-mono);
+    height: 100vh; 
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* --- 2. EFECTO LOOK CRT / ESCANEO (CORREGIDO) --- */
+/* Se coloca por debajo de la interfaz para no opacar los inputs */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(255, 255, 255, 0.02) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.01));
+    background-size: 100% 4px, 3px 100%;
+    z-index: 2; 
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+#matrix-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 1;
+}
+
+/* --- 3. PIZARRA TÁCTICA --- */
+.mission-board {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 50;
+    background: transparent !important;
+    pointer-events: all;
+}
+
+/* --- 4. SIDEBAR TERMINAL (REFORZADO) --- */
+.sidebar-terminal {
+    position: fixed;
+    left: -280px; 
+    top: 0; 
+    width: 320px; 
+    height: 100vh;
+    background: #000000 !important; /* Negro sólido para nitidez total */
+    border-right: 2px solid var(--ink-white);
+    transition: left 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 1000;
+    padding: 40px 20px;
+}
+
+.sidebar-terminal:hover { left: 0; }
+
+.sidebar-trigger {
+    position: absolute; 
+    right: -45px; 
+    top: 50px;
+    background: var(--ink-white); 
+    color: var(--bg-black); 
+    padding: 15px 8px;
+    writing-mode: vertical-rl; 
+    font-weight: 900; 
+    cursor: pointer;
+}
+
+/* Inputs con máxima prioridad visual */
+.sidebar-terminal input, 
+.sidebar-terminal select {
+    width: 100%;
+    background: #000 !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-family: inherit;
+    position: relative;
+    z-index: 1001;
+}
+
+.sidebar-terminal h2 {
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--accent-red);
+    padding-bottom: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+/* --- 5. EL NODO (DISEÑO TÁCTICO) --- */
+.node-task {
+    position: absolute;
+    background-color: var(--ink-white) !important;
+    color: var(--bg-black) !important;
+    width: 260px; 
+    min-height: 70px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 20px;
+    border: 2px solid var(--bg-black) !important;
+    cursor: grab;
+    z-index: 100;
+    /* Corte geométrico Whitemask */
+    clip-path: polygon(10% 0, 100% 0, 100% 75%, 90% 100%, 0 100%, 0 25%);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 8px 8px 0px rgba(255,255,255,0.1);
+}
+
+.node-task:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px rgba(255, 255, 255, 0.3);
+}
+
+.node-task.dragging {
+    opacity: 0.8;
+    transform: scale(1.05) rotate(3deg);
+    cursor: grabbing;
+    z-index: 999;
+}
+
+.node-loading {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+}
+
+/* --- 6. ESTADOS Y BOTONES --- */
+.status-tag { font-size: 0.65rem; font-weight: 900; text-align: center; padding: 2px 8px; margin-top: 5px; }
+.status-standby { color: var(--accent-red) !important; animation: blink 1.2s infinite; }
+
+.status-progress { 
+    background: var(--accent-blue) !important; 
+    color: var(--ink-white) !important;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 5px var(--accent-blue); }
+    to { box-shadow: 0 0 15px var(--accent-blue); }
+}
+
+@keyframes blink { 50% { opacity: 0.3; } }
+
+.node-expanded-content { display: none; margin-top: 10px; border-top: 2px solid #000; padding-top: 10px; }
+.node-task.expanded { height: auto; min-height: 260px; clip-path: none; }
+.node-task.expanded .node-expanded-content { display: block; }
+
+.btn-node { flex: 1; padding: 10px; font-weight: 900; border: 2px solid #000; cursor: pointer; font-family: inherit; }
+.btn-node.black { background: #000; color: #fff; }
+.btn-node:hover { background: var(--accent-red); color: #fff; }
+
+.btn-plus {
+    background: var(--ink-white) !important;
+    color: var(--bg-black) !important;
+    border: none;
+    padding: 0 15px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+
+/* Animación para NEO_GLASS (Pulso de energía azul) */
+[data-theme="glass"] .node-task {
+    animation: pulse-glass 4s infinite;
+}
+
+@keyframes pulse-glass {
+    0%, 100% { border-color: rgba(255,255,255,0.2); }
+    50% { border-color: rgba(96, 165, 250, 0.8); }
+}
+
+/* Animación para CYBER_PUNK (Efecto Glitch aleatorio) */
+[data-theme="neon"] .node-task:hover {
+    animation: glitch 0.5s infinite;
+}
+
+@keyframes glitch {
+    0% { transform: translate(1px, 0.5px) rotate(0deg); }
+    20% { transform: translate(-0.5px, -1px) rotate(-0.5deg); }
+    60% { transform: translate(-1.5px, 0.5px) rotate(0.5deg); }
+    100% { transform: translate(0.5px, -0.5px) rotate(0deg); }
+}
+/* En whitemask.css cambia esto */
+.sidebar-terminal, .node-task {
+    font-family: var(--font-mono);
+}
+
+/* --- LÓGICA DE LOGIN SERIA (ORIGIN) --- */
+body[data-theme="default"] #loginTitle { font-size: 0; }
+body[data-theme="default"] #loginTitle::before { content: "SEGURIDAD DE RED"; font-size: 1.4rem; color: var(--ink-black); }
+body[data-theme="default"] #userLabel::before { content: "ID_OPERADOR:"; }
+body[data-theme="default"] #passLabel::before { content: "CLAVE_DE_ACCESO:"; }
+
+.auth-switching[data-theme="default"] {
+    animation: deploy-window 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+}
+@keyframes deploy-window {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(0.01); background: #000; }
+    100% { transform: scaleX(1); }
+}
+
+/* --- CORRECCIÓN DE COLISIÓN DE ANIMACIONES --- */
+.auth-switching {
+    transition: none !important; /* Desactiva transiciones suaves durante el cambio */
+    pointer-events: none; /* Evita que el usuario haga click mientras se mueve */
+}
+
+/* Animación Base: Despliegue de Ventana (Whitemask) */
+body[data-theme="default"] .auth-switching {
+    animation: deploy-window 0.8s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+}
+
+@keyframes deploy-window {
+    0% { transform: scaleX(1); opacity: 1; }
+    50% { transform: scaleX(0.01); opacity: 0.5; background: #000; }
+    100% { transform: scaleX(1); opacity: 1; }
+}
+
+.sidebar-terminal .sidebar-content {
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    padding-right: 8px;
+}
+

@@ -1,0 +1,111 @@
+:root {
+  --sidebar-bg: #101014;
+  --main-bg: #181820;
+  --accent: #00f2ff;
+  --danger: #ff0055;
+  --warning: #ff9800;
+  --success: #00f2ff;
+  --text: #fff;
+  --card: #23233a;
+}
+body {
+  background: var(--main-bg);
+  color: var(--text);
+  font-family: 'Fira Code', monospace;
+  margin: 0;
+  display: flex;
+}
+.sidebar {
+  background: var(--sidebar-bg);
+  color: var(--text);
+  width: 250px;
+  min-height: 100vh;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  box-shadow: 2px 0 16px #0008;
+}
+.sidebar h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+}
+.sidebar button {
+  width: 100%;
+  margin-bottom: 12px;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.calendar-box {
+  background: #181828;
+  border-radius: 8px;
+  padding: 12px;
+  color: #fff;
+  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 16px;
+}
+main {
+  flex: 1;
+  padding: 40px 32px 32px 32px;
+  background: var(--main-bg);
+  min-height: 100vh;
+}
+header h1 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.stats {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.stats > div {
+  background: var(--card);
+  padding: 18px 24px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  min-width: 120px;
+  text-align: center;
+}
+.charts {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.charts canvas {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 12px #0004;
+  min-height: 180px;
+  max-width: 50%;
+  display: block;
+}
+#alertasCriticas {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 24px;
+  color: var(--danger);
+}
+#alertasCriticas h2 {
+  color: var(--danger);
+  margin-bottom: 12px;
+}
+#listaAlertas li {
+  margin-bottom: 8px;
+  font-weight: 700;
+}

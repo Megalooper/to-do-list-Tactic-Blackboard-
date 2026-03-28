@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>WHITEMASK | Autenticación</title>
+    <link rel="stylesheet" href="/themes/whitemask.css">
+    <link rel="stylesheet" href="/themes/login-layout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=VT323&family=Special+Elite&display=swap" rel="stylesheet">
+</head>
+<body data-theme="default">
+    <canvas id="matrix-canvas"></canvas>
+    
+    <div class="login-container">
+        <div id="authCard" class="login-box node-task">
+            <div id="loginFields">
+                <h2 id="loginTitle">_AUTENTICACIÓN</h2>
+                <form id="loginForm">
+                    <input type="text" placeholder="Usuario..." required>
+                    <input type="password" placeholder="Clave..." required>
+                    <button type="submit" class="btn-node black">[ ACCEDER ]</button>
+                </form>
+                <p onclick="toggleAuth()" class="toggle-link">¿No tienes acceso? _REGISTRAR</p>
+            </div>
+
+            <div id="registerFields" style="display:none;">
+                <h2 id="regTitle">_NUEVO_REGISTRO</h2>
+                <form id="regForm">
+                    <input type="text" placeholder="Nuevo Usuario..." required>
+                    <input type="password" placeholder="Crear Clave..." required>
+                    <button type="submit" class="btn-node black">[ CREAR_PERFIL ]</button>
+                </form>
+                <p onclick="toggleAuth()" class="toggle-link">Ya tengo ID _VOLVER</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/themes/theme-injector.js"></script>
+    <script src="/login.js"></script> <script>
+        const saved = localStorage.getItem('selected-theme') || 'default';
+        changeTheme(saved);
+    </script>
+    
+</body>
+</html>
